@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
     const monthlyToggle = document.getElementById('monthly');
     const yearlyToggle = document.getElementById('yearly');
@@ -6,43 +5,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearlyPrices = document.querySelectorAll('.yearly-price');
     const assessmentCount = document.querySelector('.assessment-count');
 
+    // Initialize animation properties
+    let animating = false;
+    const animationDuration = 300; // in milliseconds
+
+    // Function to animate price changes
+    const animatePriceChange = (show, hide) => {
+        if (animating) return;
+        animating = true;
+
+        // Fade out current prices
+        hide.forEach(price => {
+            price.style.opacity = '0';
+            setTimeout(() => {
+                price.classList.add('hidden');
+            }, animationDuration / 2);
+        });
+
+        // Fade in new prices
+        setTimeout(() => {
+            show.forEach(price => {
+                price.classList.remove('hidden');
+                setTimeout(() => {
+                    price.style.opacity = '1';
+                }, 50);
+            });
+            animating = false;
+        }, animationDuration / 2);
+    };
+
     monthlyToggle.addEventListener('click', () => {
+        if (monthlyToggle.classList.contains('active')) return;
         monthlyToggle.classList.add('active');
         yearlyToggle.classList.remove('active');
-        monthlyPrices.forEach(price => price.classList.remove('hidden'));
-        yearlyPrices.forEach(price => price.classList.add('hidden'));
+        animatePriceChange(monthlyPrices, yearlyPrices);
         assessmentCount.textContent = '3 Self assessments';
     });
 
     yearlyToggle.addEventListener('click', () => {
+        if (yearlyToggle.classList.contains('active')) return;
         yearlyToggle.classList.add('active');
         monthlyToggle.classList.remove('active');
-        yearlyPrices.forEach(price => price.classList.remove('hidden'));
-        monthlyPrices.forEach(price => price.classList.add('hidden'));
+        animatePriceChange(yearlyPrices, monthlyPrices);
         assessmentCount.textContent = '40 Self assessments';
     });
-=======
-document.addEventListener('DOMContentLoaded', () => {
-    const monthlyToggle = document.getElementById('monthly');
-    const yearlyToggle = document.getElementById('yearly');
-    const monthlyPrices = document.querySelectorAll('.monthly-price');
-    const yearlyPrices = document.querySelectorAll('.yearly-price');
-    const assessmentCount = document.querySelector('.assessment-count');
-
-    monthlyToggle.addEventListener('click', () => {
-        monthlyToggle.classList.add('active');
-        yearlyToggle.classList.remove('active');
-        monthlyPrices.forEach(price => price.classList.remove('hidden'));
-        yearlyPrices.forEach(price => price.classList.add('hidden'));
-        assessmentCount.textContent = '3 Self assessments';
-    });
-
-    yearlyToggle.addEventListener('click', () => {
-        yearlyToggle.classList.add('active');
-        monthlyToggle.classList.remove('active');
-        yearlyPrices.forEach(price => price.classList.remove('hidden'));
-        monthlyPrices.forEach(price => price.classList.add('hidden'));
-        assessmentCount.textContent = '40 Self assessments';
-    });
->>>>>>> d70cbd7ccf61aaa04117428862f04f8b446a3dc3
 });
