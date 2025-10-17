@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Coming Soon</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .coming-soon-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 100px);
+            text-align: center;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .development-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: #2E7D32;
+        }
+
+        .coming-soon-content h1 {
+            color: #2E7D32;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-content p {
+            color: #666;
+            font-size: 1.2em;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .professor-ai {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .ai-message span {
+            color: #2E7D32;
+            font-weight: bold;
+        }
+
+        .ai-icon {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <button id="sidebar-toggle" class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav>
+                <ul id="sidebar-menu">
+                    <!-- Menu items will be injected by JavaScript -->
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="coming-soon-content">
+                <div class="development-icon">📊</div>
+                <h1>Dashboard Coming Soon!</h1>
+                <p>We're working hard to bring you an amazing dashboard experience. Track your progress, view analytics, and manage your learning journey - all in one place. Stay tuned for the launch!</p>
+            </div>
+        </div>
+        <div class="professor-ai" onclick="window.open('https://chatgpt.com/g/g-68f2223fa320819194d7d20050fba781-professor-ai', '_blank')">
+            <div class="ai-message">
+                <span>Professor AI</span>
+                <p>How may I help you?</p>
+            </div>
+            <div class="ai-icon">🤖</div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
