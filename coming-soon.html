@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,4 +175,182 @@
         `).join('');
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Development</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .coming-soon-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 100px);
+            text-align: center;
+            background: #f5f5f5;
+        }
+
+        .coming-soon-content img {
+            width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .coming-soon-content h1 {
+            color: #2E7D32;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-content p {
+            color: #666;
+            font-size: 1.2em;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .professor-ai {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 300px;
+        }
+
+        .ai-message span {
+            color: #2E7D32;
+            font-weight: bold;
+        }
+
+        .ai-icon {
+            font-size: 24px;
+        }
+
+        .development-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: #2E7D32;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar will be injected by JavaScript based on plan -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <button id="sidebar-toggle" class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav>
+                <ul id="sidebar-menu">
+                    <!-- Menu items will be injected by JavaScript -->
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="coming-soon-content">
+                <div class="development-icon" id="moduleIcon">🚀</div>
+                <h1 id="moduleTitle">Feature Coming Soon!</h1>
+                <p id="moduleDescription">We're working hard to bring you an amazing experience. This feature is currently under development and will be available shortly. Stay tuned for updates!</p>
+            </div>
+            <script>
+                // Get the module from URL parameters
+                const module = new URLSearchParams(window.location.search).get('module');
+                
+                // Define module-specific content
+                const moduleContent = {
+                    dashboard: {
+                        icon: '📊',
+                        title: 'Dashboard Coming Soon!',
+                        description: 'Your personalized dashboard is being crafted to provide you with the best learning analytics and progress tracking.'
+                    },
+                    practice: {
+                        icon: '📝',
+                        title: 'Practice Module Coming Soon!',
+                        description: 'Get ready for an interactive practice experience with customized learning paths and real-time feedback.'
+                    },
+                    performance: {
+                        icon: '📈',
+                        title: 'Performance Analytics Coming Soon!',
+                        description: 'Detailed performance insights and progress tracking tools are being fine-tuned for your learning journey.'
+                    },
+                    tests: {
+                        icon: '📚',
+                        title: 'Previous Tests Module Coming Soon!',
+                        description: 'Your test history and performance analysis tools are being prepared to help you track your improvement.'
+                    },
+                    assessment: {
+                        icon: '✍️',
+                        title: 'Self-Assessment Module Coming Soon!',
+                        description: 'Advanced self-assessment tools are being developed to help you evaluate and improve your knowledge.'
+                    }
+                };
+
+                // Update content based on module
+                if (module && moduleContent[module]) {
+                    document.getElementById('moduleIcon').textContent = moduleContent[module].icon;
+                    document.getElementById('moduleTitle').textContent = moduleContent[module].title;
+                    document.getElementById('moduleDescription').textContent = moduleContent[module].description;
+                }
+            </script>
+        </div>
+        <div class="professor-ai" onclick="window.open('https://chatgpt.com/g/g-68f2223fa320819194d7d20050fba781-professor-ai', '_blank')">
+            <div class="ai-message">
+                <span>Professor AI</span>
+                <p>How may I help you?</p>
+            </div>
+            <div class="ai-icon">🤖</div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+    <script>
+        // Get the plan from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const plan = urlParams.get('plan') || 'advanced';
+
+        // Define menu items based on plan
+        const menuItems = {
+            basic: [
+                { icon: '📊', text: 'Dashboard', link: './dashboard.html?plan=basic' },
+                { icon: '📝', text: 'Practice Now', link: './coming-soon.html?plan=basic' },
+                { icon: '📈', text: 'Performance', link: './coming-soon.html?plan=basic' },
+                { icon: '📚', text: 'Previous Tests', link: './coming-soon.html?plan=basic' }
+            ],
+            advanced: [
+                { icon: '📊', text: 'Dashboard', link: './dashboard.html?plan=advanced' },
+                { icon: '📝', text: 'Practice Now', link: './coming-soon.html?plan=advanced' },
+                { icon: '📈', text: 'Performance', link: './coming-soon.html?plan=advanced' },
+                { icon: '📚', text: 'Previous Tests', link: './coming-soon.html?plan=advanced' },
+                { icon: '✍️', text: 'Self-Assessment', link: './coming-soon.html?plan=advanced' },
+                { icon: '👨‍⚕️', text: 'Doctor Consultation', link: './doctor-consultation.html?plan=advanced' }
+            ]
+        };
+
+        // Generate menu based on plan
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        const items = menuItems[plan] || menuItems.advanced;
+        
+        sidebarMenu.innerHTML = items.map(item => `
+            <li${window.location.pathname.includes(item.text.toLowerCase().replace(' ', '-')) ? ' class="active"' : ''}>
+                <a href="${item.link}">
+                    <i class="icon">${item.icon}</i>
+                    <span class="menu-text">${item.text}</span>
+                </a>
+            </li>
+        `).join('');
+    </script>
+</body>
+>>>>>>> d70cbd7ccf61aaa04117428862f04f8b446a3dc3
 </html>
